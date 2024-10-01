@@ -119,5 +119,214 @@ try {
     let numero1: number = 1;
     console.log(numero1.toString());
 } catch (error) {
-    console.log("Se ha producido un error al convertir un numero a String",error);
+    console.log("Se ha producido un error al convertir un numero a String", error);
 }
+
+//Bucles
+
+let listadeTareas: Tarea[] = [
+
+    {
+        nombre: "Tarea 1",
+        prioridad: 2,
+        estado: estadoTarea["En proceso"]
+    },
+    {
+        nombre: "Tarea 2",
+        prioridad: 0,
+        estado: estadoTarea.Pendiente
+    },
+    {
+        nombre: "Tarea 3",
+        prioridad: 15,
+        estado: estadoTarea.Terminado
+    }
+]
+
+//Bucle for each
+listadeTareas.forEach((tarea: Tarea, index: number) => console.log(`${index}- ${tarea.nombre}`));
+
+//Bucle for 
+for (let index = 0; index < listadeTareas.length; index++) {
+    const tarea = listadeTareas[index];
+    console.log(tarea);
+
+}
+
+//Bucle while
+while (tarea1.estado !== estadoTarea.Terminado) {
+    if (tarea1.prioridad == 20) {
+        estadoTarea.Terminado;
+        break;
+    } else {
+        tarea1.prioridad++;
+    }
+}
+
+//Bucle do-while
+do {
+    tarea1.prioridad++;
+    tarea1.estado = estadoTarea.Terminado;
+} while (tarea1.estado != estadoTarea.Terminado);
+
+//Funciones
+
+/**
+ * Función que muestra un saludo por consola
+ */
+function saludar() {
+    let nombre = "Julio";
+    console.log("Hola Mundo", `${nombre}`);
+
+}
+
+//Llamada de la función saludar
+saludar();
+
+//Función clásica con parámetros
+/**
+ * Función que saluda a una persona
+ * @param nombre Nombre de la persona a saludar
+ */
+function saludar2(nombre: string) {
+    console.log("Hola Mundo", `${nombre}`);
+}
+
+saludar2(nombre);
+
+//Función con parámetros por defecto
+
+/**
+ * Función que saluda a una person
+ * @param nombre Nombre de la persona a saludar que es por defecto Pepe
+ */
+
+function saludarPorDefecto(nombre: string = "Pepe") {
+    console.log("Hola Mundo", `${nombre}`);
+}
+
+saludarPorDefecto();
+
+//Función con parámetros opcionales 
+/**
+ * Función que saluda a alguien si se le pasa por parámetro el nombre y sino saluda a anónimo
+ * @param nombre Nombre de la persona a saludar
+ */
+function saludarOPCIONAL(nombre?: string) {
+    if (nombre) {
+        console.log("Hola Mundo: " + nombre);
+    } else {
+        console.log("Hola anónimo");
+    }
+}
+
+saludarOPCIONAL();
+saludarOPCIONAL(nombre);
+
+//Función con parámetros de varios tipos
+function funcionVariosParametros(nombre: string, edad: number) {
+    console.log(`${nombre},${edad}`);
+}
+
+let edad: number = 25;
+funcionVariosParametros(nombre, edad);
+
+//Función con un parámetro que puede ser de varios tipos
+function parametroDistintoTipo(a: string | number) {
+    if (typeof (a) == 'string') {
+        console.log("La variable a es un string")
+    } else {
+        console.log("La variable a es un número")
+    }
+}
+
+parametroDistintoTipo(nombre);
+parametroDistintoTipo(edad);
+
+//Funciones con return
+function ejemploReturn(nombre: string, apellidos: string): string {
+    return `${nombre} ${apellidos}`;
+}
+
+console.log(ejemploReturn("Pepe", "Viyuela"));
+
+//Función que puede recibir un número indeterminado de argumentos
+function multipleParams(...nombres: string[]) {
+    nombres.forEach(nombre => {
+        console.log(nombre);
+    });
+}
+
+multipleParams("Pepe", "Paco", "Pedro");
+
+//A este tipo de funciones también se le puede pasar una lista
+let listaNombres: string[] = ["Juan", "Jose"];
+
+multipleParams(...listaNombres);
+
+//Funciones arrow
+/**
+ * Las funciones arrow son una sintaxis compacta de definir funciones en JavaScript y TypeScript.
+ * Proporcionan una forma más breve y clara de escribir funciones en comparación con la sintaxis tradicional, 
+ * lo que mejora la legibilidad y mantiene la seguridad de los tipos.
+ * 
+ * (param1, param2, ..., paramN) => {}
+ */
+
+let getDatosTarea = (tarea: Tarea): string => { return `La tarea denominada ${tarea.nombre} cuyo estado es ${tarea.estado} tiene una prioridad ${tarea.prioridad} ` }
+console.log(getDatosTarea(tarea1));
+
+/**
+ * Funciones CallBack
+ * Una función callback es una función que se pasa a otra función como parámetro y dentro de la misma es llamada.
+ * Hay que tener en cuenta que una función se trata como un objeto.
+ */
+
+//Ejemplo 1: 
+
+const funcionMuestra = function () {
+    console.log("CallBack desde función estándar");
+}
+
+setTimeout(funcionMuestra, 100); // La función timeout llama a funciónMuestra después de 100ms
+
+// Ejemplo 2: paso de una función anónima
+setTimeout(function () { console.log("CallBack desde función anónima") }, 1000);
+
+// Ejemplo 3: paso de una función flecha
+
+setTimeout(() => { console.log("CallBack desde función flecha") }, 500);
+
+/* // Ejemplo 4:
+
+let muestraDatos = function (a:string, b:number, c:string[]){
+    console.log(`Ejemplo 4 - ${a}`);
+}
+
+listadeTareas.forEach(muestraDatos)
+
+listadeTareas.forEach((valor:string,indice:number,datos:string[]) => {
+    console.log(`${valor}, mostrado desde función CallBack fecha`)
+}) */
+
+// Ejemplo 5: 
+
+let fsuma = function suma(a: number, b: number) {
+    console.log("Llamada desde función opera")
+    return a + b;
+}
+
+let fresta = function resta(a: number, b: number) {
+    return a - b;
+}
+// En este ejemplo estamos definiendo que la función opera espera recibir como parámetro una función CallBack
+// Concretamente, estamos diciendo que la función como entrada tiene que tener dos parámetros y devolver un número
+// Cuando se llama a dicha función CallBack desde la función principal se le pasan dichos parámetros y se vuelve a operar con el resultado
+
+function opera(x: number, y: number, callbackfuntion: (a: number, b: number) => number) {
+    return callbackfuntion(x, y);
+}
+
+opera(2, 3, fsuma);
+opera(2, 3, fresta);
+
