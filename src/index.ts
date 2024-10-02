@@ -259,6 +259,11 @@ function multipleParams(...nombres: string[]) {
 
 multipleParams("Pepe", "Paco", "Pedro");
 
+//Función anónima
+let fanonima = function () { console.log("Hola Mundo") };
+
+fanonima();
+
 //A este tipo de funciones también se le puede pasar una lista
 let listaNombres: string[] = ["Juan", "Jose"];
 
@@ -275,6 +280,17 @@ multipleParams(...listaNombres);
 
 let getDatosTarea = (tarea: Tarea): string => { return `La tarea denominada ${tarea.nombre} cuyo estado es ${tarea.estado} tiene una prioridad ${tarea.prioridad} ` }
 console.log(getDatosTarea(tarea1));
+
+let farrow = (tarea: Tarea, indice: number) => { console.log(`${indice}-${tarea.nombre}`) };
+//Le pasamos al forEach una función arrow ya definida
+console.log("For each con función arrow ya definida")
+listadeTareas.forEach(farrow);
+//Le pasamos al forEach una función arrow directamente
+console.log("For each con función arrow definida dentro del forEach")
+listadeTareas.forEach((tarea: Tarea, indice: number) => { console.log(`${indice}-${tarea.nombre}`) });
+//Le pasamos al forEach una función anónima
+console.log("For each con función anónima dentro del forEach")
+listadeTareas.forEach(function (tarea: Tarea) { console.log(`${tarea.nombre}`) });
 
 /**
  * Funciones CallBack
