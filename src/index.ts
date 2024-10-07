@@ -346,3 +346,44 @@ function opera(x: number, y: number, callbackfuntion: (a: number, b: number) => 
 opera(2, 3, fsuma);
 opera(2, 3, fresta);
 
+//Funciones asincronas
+
+async function asincrona() {
+    let suma: number = 0;
+    for (let index = 0; index < 100000; index++) {
+        suma += index;
+
+    }
+    return suma
+}
+asincrona().then((data: number) => { console.log(`El resultado de ejecutar asyc = ${data}`) });
+console.log("Línea de código posterior a la función asincrona");
+
+//  Funcion asincrona con promesa
+
+type University = {
+    domains: string[];
+    alpha_two_codes: string;
+    name: string;
+}
+async function getDataUniversity(): Promise<University[]> {
+    const data = await fetch("http://universities.hipolabs.com/search?country=Spain");
+    let respuesta: Promise<University[]> = await data.json() as Promise<University[]>;
+    return respuesta;
+
+}
+
+getDataUniversity().then((data: University[]) => {
+    data.forEach((universidad) => console.log(universidad.name))
+});
+
+//funciones generadoras
+function* fgeneradora(): Generator<Tarea> {
+    for (let tarea in listadeTareas) {
+        yield listadeTareas[tarea];
+    }
+}
+
+let funciongen = fgeneradora;
+
+
