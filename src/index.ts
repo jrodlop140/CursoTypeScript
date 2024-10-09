@@ -440,6 +440,13 @@ function saludarSobrecarga(nombre: string, apellido?: string, edad?: string) {
 //Activity 1.1. Data Storage.
 
 //Activity 2
+/**
+ * Método que dependiendo del tipo pasado guarda los datos por parámetro en Session Storage o Local Storage
+ * 
+ * @param type Tipo de dato
+ * @param key Clave
+ * @param data Array de tareas
+ */
 function activity2(type: string = "Session Storage", key: string, data: Tarea[]) {
 
     if (type == "session") {
@@ -455,3 +462,58 @@ function activity2(type: string = "Session Storage", key: string, data: Tarea[])
 //Activity 3
 activity2("session", "datos", listadeTareas);
 activity2("local", "datos", listadeTareas);
+
+
+//Activity 4
+/**
+ * Método que recupera los datos de Session Storage o de Local Storage
+ * 
+ * @param type
+ * @param key 
+ */
+function recuperarDatos(type: string = "session", key: string) {
+    let dato: string | null = null;
+    if (type == "session") {
+        dato = sessionStorage.getItem(key);
+        console.log("Se recuperaron los datos en Session Storage");
+    } else if (type == "local") {
+        dato = localStorage.getItem(key);
+        console.log("Se recuperaron los datos en Local Storage")
+    } else {
+        console.error("No se ha introducido un tipo válido");
+    }
+
+    return dato;
+}
+
+//Activity 5
+
+// Recuperar datos de Session Storage y Local Storage
+let datosRecuperadosSession = recuperarDatos("session", "datos");
+let datosRecuperadosLocal = recuperarDatos("local", "datos");
+
+// Procesar los datos recuperados de Session Storage
+if (datosRecuperadosSession) {
+    try {
+        let auxiliarSession: Tarea[] = JSON.parse(datosRecuperadosSession);
+        console.log("Datos de Session Storage:", auxiliarSession);
+    } catch (error) {
+        console.error("Error al parsear datos de Session Storage:", error);
+    }
+} else {
+    console.log("No se encontraron datos en Session Storage");
+}
+
+// Procesar los datos recuperados de Local Storage
+if (datosRecuperadosLocal) {
+    try {
+        let auxiliarLocal: Tarea[] = JSON.parse(datosRecuperadosLocal);
+        console.log("Datos de Local Storage:", auxiliarLocal);
+    } catch (error) {
+        console.error("Error al parsear datos de Local Storage:", error);
+    }
+} else {
+    console.log("No se encontraron datos en Local Storage");
+}
+
+
