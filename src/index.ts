@@ -1,5 +1,6 @@
 import { log } from "console";
 import { json } from "stream/consumers";
+import Cookies from 'js-cookie';
 
 console.log("Hola Mundo");
 
@@ -515,5 +516,39 @@ if (datosRecuperadosLocal) {
 } else {
     console.log("No se encontraron datos en Local Storage");
 }
+
+//Activity 6
+
+/**
+ * Método que borra los datos de Session Storage y Local Storage
+ * 
+ * @param type Valor que pasamos para controlar que borramos
+ * @param key Clave para borrar los storages
+ */
+function borrarDatos(type: string, key: string) {
+    if (type == "session") {
+        sessionStorage.removeItem(key);
+    } else if (type == "local") {
+        localStorage.removeItem(key);
+    }
+}
+
+borrarDatos("session", "datos");
+borrarDatos("local", "datos");
+
+//Activity 7
+
+//Creamos las cookies
+Cookies.set("nombre", "Julio", { expires: 7, path: "/" });
+Cookies.set("apellidos", "RodriguezLopez", { expires: 2 });
+Cookies.set("email", "jrodlop140@iescarrillo.es", { expires: 4 });
+//Recuperamos todas las cookies
+console.log("Mostramos las cookies en la consola:")
+console.log(Cookies.get());
+
+//Borramos todas las cookies anteriores
+Cookies.remove("nombre");
+Cookies.remove("apellidos");
+Cookies.remove("email");
 
 
