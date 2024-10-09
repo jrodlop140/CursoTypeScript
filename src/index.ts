@@ -1,4 +1,5 @@
 import { log } from "console";
+import { json } from "stream/consumers";
 
 console.log("Hola Mundo");
 
@@ -361,21 +362,21 @@ console.log("Línea de código posterior a la función asincrona");
 
 //  Funcion asincrona con promesa
 
-type University = {
-    domains: string[];
-    alpha_two_codes: string;
-    name: string;
-}
-async function getDataUniversity(): Promise<University[]> {
-    const data = await fetch("http://universities.hipolabs.com/search?country=Spain");
-    let respuesta: Promise<University[]> = await data.json() as Promise<University[]>;
-    return respuesta;
+// type University = {
+//     domains: string[];
+//     alpha_two_codes: string;
+//     name: string;
+// }
+// async function getDataUniversity(): Promise<University[]> {
+//     const data = await fetch("http://universities.hipolabs.com/search?country=Spain");
+//     let respuesta: Promise<University[]> = await data.json() as Promise<University[]>;
+//     return respuesta;
 
-}
+// }
 
-getDataUniversity().then((data: University[]) => {
-    data.forEach((universidad) => console.log(universidad.name))
-});
+// getDataUniversity().then((data: University[]) => {
+//     data.forEach((universidad) => console.log(universidad.name))
+// });
 
 //funciones generadoras
 function* fgeneradora(): Generator<Tarea> {
@@ -442,13 +443,15 @@ function saludarSobrecarga(nombre: string, apellido?: string, edad?: string) {
 function activity2(type: string = "Session Storage", key: string, data: Tarea[]) {
 
     if (type == "session") {
-        sessionStorage.setItem(key, data.toString());
+        sessionStorage.setItem(key, JSON.stringify(data));
         console.log("Se guardaron los datos en Session Storage");
     } else if (type == "local") {
-        localStorage.setItem(key, data.toString());
+        localStorage.setItem(key, JSON.stringify(data));
         console.log("Se guardaron los datos en Local Storage")
     }
 
 }
 
-
+//Activity 3
+activity2("session", "datos", listadeTareas);
+activity2("local", "datos", listadeTareas);
