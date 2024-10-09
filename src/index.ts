@@ -439,7 +439,7 @@ function saludarSobrecarga(nombre: string, apellido?: string, edad?: string) {
 //Activity 1.1. Data Storage.
 
 //Activity 2
-function funcion(type: string = "Session Storage", key: string, data: Tarea[]) {
+function activity2(type: string = "Session Storage", key: string, data: Tarea[]) {
 
     if (type == "session") {
         sessionStorage.setItem(key, data.toString());
@@ -450,3 +450,5 @@ function funcion(type: string = "Session Storage", key: string, data: Tarea[]) {
     }
 
 }
+
+
