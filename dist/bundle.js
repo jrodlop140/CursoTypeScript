@@ -608,7 +608,20 @@ function borrarDatos(type, key) {
 borrarDatos("session", "datos");
 borrarDatos("local", "datos");
 //Activity 7
-js_cookie_1.default.set("nombre", "julio,{expires:7,path:/}");
+//Creamos las cookies
+js_cookie_1.default.set("nombre", "Julio", { expires: 7, path: "/" });
+js_cookie_1.default.set("apellidos", "RodriguezLopez", { expires: 2 });
+js_cookie_1.default.set("email", "jrodlop140@iescarrillo.es", { expires: 4 });
+//Recuperamos todas las cookies
+console.log("Mostramos las cookies en la consola:");
+console.log(js_cookie_1.default.get());
+//Borramos todas las cookies anteriores
+js_cookie_1.default.remove("nombre");
+js_cookie_1.default.remove("apellidos");
+js_cookie_1.default.remove("email");
+//Acceso a elementos del DOM
+let input = document.getElementById("input-contenido");
+console.log(input.value);
 
 
 /***/ })
