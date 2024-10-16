@@ -587,3 +587,15 @@ btnNuevoContenido.addEventListener("click", (event) => {
     //TODO:
     console.log("Usuario hace clic en el boton");
 })
+
+
+ let elementoOL:HTMLOListElement = document.getElementById("lista-contenidos") as HTMLOListElement;
+
+let primerElemento :HTMLLIElement = elementoOL.children[0] as HTMLLIElement
+
+ console.log(elementoOL.children);
+ elementoOL.firstElementChild;
+ elementoOL.lastElementChild;
+ elementoOL.nextElementSibling;
+
+
